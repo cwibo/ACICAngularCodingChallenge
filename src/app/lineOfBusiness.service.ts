@@ -5,6 +5,7 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { LineOfBusiness } from './LineOfBusiness';
+import { RecentQuote } from './RecentQuote';
 import { MessageService } from './message.service';
 
 
@@ -12,6 +13,7 @@ import { MessageService } from './message.service';
 export class LineOfBusinessService {
 
   private lineOfBusinessUrl = 'api/linesOfBusiness';  // URL to web api
+  private recentQuoteURL = 'api/recentQuotes'
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -28,6 +30,9 @@ export class LineOfBusinessService {
         tap(_ => this.log('fetched lines of business')),
         catchError(this.handleError<LineOfBusiness[]>('getLinesOfBusiness', []))
       );
+  }
+  getQuote(){
+    return this.http.get<RecentQuote[]>(this.recentQuoteURL)
   }
 
   /** GET line of business by id. Return `undefined` when id not found */

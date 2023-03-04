@@ -4,6 +4,12 @@
       routerLink="/detail/{{lineOfBusiness.id}}">
       {{lineOfBusiness.name}}
   </a>
+  <br>
+  <a *ngFor="let recentQuote of recentQuotes"
+      routerLink="/detail/{{recentQuote.id}}">
+      {{recentQuote.quoteNumber}}
+  </a>
 </div>
+
 
 <app-lineOfBusiness-search></app-lineOfBusiness-search>
