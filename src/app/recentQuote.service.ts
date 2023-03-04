@@ -10,12 +10,11 @@ import { MessageService } from './message.service';
 
 @Injectable({ providedIn: 'root' })
 export class RecentQuoteService{
-    private lineOfBusinessUrl = 'api/linesOfBusiness';  // URL to web api
     private recentQuoteUrl = 'api/recentQuotes';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-  };
+  };    
 
   constructor(
     private http: HttpClient,
@@ -24,7 +23,7 @@ export class RecentQuoteService{
     }
 
     getRecentQuotes(): Observable<RecentQuote[]> {
-        return this.http.get<RecentQuote[]>(this.lineOfBusinessUrl)
+        return this.http.get<RecentQuote[]>(this.recentQuoteUrl)
           .pipe(
             tap(_ => this.log('fetched lines of business')),
             catchError(this.handleError<RecentQuote[]>('getRecentQuotes', []))

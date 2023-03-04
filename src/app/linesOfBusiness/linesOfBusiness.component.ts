@@ -32,7 +32,7 @@ export class LineOfBusinessComponent implements OnInit {
   }
 
   getRecentQuotes(): void{
-    this.lineOfBusinessService.getQuote()
+    this.recentQuoteService.getRecentQuotes()
     .subscribe(recentQuotes => this.recentQuotes = recentQuotes);
   }
 

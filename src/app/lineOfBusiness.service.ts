@@ -34,6 +34,13 @@ export class LineOfBusinessService {
   getQuote(){
     return this.http.get<RecentQuote[]>(this.recentQuoteURL)
   }
+  getRecentQuotes(): Observable<RecentQuote[]> {
+    return this.http.get<RecentQuote[]>(this.recentQuoteURL)
+      .pipe(
+        tap(_ => this.log('fetched lines of business')),
+        catchError(this.handleError<RecentQuote[]>('getRecentQuotes', []))
+      );
+  }
 
   /** GET line of business by id. Return `undefined` when id not found */
   getLineOfBusinessNo404<Data>(id: number): Observable<LineOfBusiness> {
