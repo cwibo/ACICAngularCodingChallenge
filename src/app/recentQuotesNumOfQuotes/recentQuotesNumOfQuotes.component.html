@@ -1,0 +1,12 @@
+<p>recentQuotesNumOfQuotes works!</p>
+<div *ngIf="recentQuotes">
+    <h2>gr</h2>
+    
+    <ul class="recentQuotes">
+      <li *ngFor="let quote of quotes">
+        <span class="badge">{{quote.id}}</span> {{quote.quoteNumber}} - {{quote.lineOfBusiness}}
+      </li>
+    </ul>
+    <label for="RecentQuote-name">Recent Quote Name: </label>
+    
+</div>

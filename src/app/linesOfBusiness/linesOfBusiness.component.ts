@@ -1,40 +1,33 @@
 import { Component, OnInit } from '@angular/core';
-
+import { delay } from 'rxjs/operators';
 import { LineOfBusiness } from '../LineOfBusiness';
 import { LineOfBusinessService } from '../lineOfBusiness.service';
-import { InMemoryDataService } from '../in-memory-data.service';
-import { RecentQuote } from '../RecentQuote';
-import { RecentQuoteService } from '../recentQuote.service';
+
 
 @Component({
   selector: 'app-linesOfBusiness',
   templateUrl: './linesOfBusiness.component.html',
   styleUrls: ['./linesOfBusiness.component.css'],
-  providers: [InMemoryDataService]
 })
 export class LineOfBusinessComponent implements OnInit {
   linesOfBusiness: LineOfBusiness[] = [];
-  recentQuotes: RecentQuote[] = [];
+  count: LineOfBusiness[] = [];
 
-  constructor(private lineOfBusinessService: LineOfBusinessService,
-    private recentQuoteService: RecentQuoteService,
-    private inMemoryDataService: InMemoryDataService) { } 
+  constructor(private lineOfBusinessService: LineOfBusinessService,) { } 
 
   ngOnInit() {
     this.getLinesOfBusiness();
-    this.getRecentQuotes();
-    //this.recentQuotes = this.inMemoryDataService.recentQuotes;
   }
 
-  getLinesOfBusiness(): void {
+   getLinesOfBusiness(): void {
     this.lineOfBusinessService.getLinesOfBusiness()
-    .subscribe(linesOfBusiness => this.linesOfBusiness = linesOfBusiness);
+    .subscribe(linesOfBusiness => {
+      this.linesOfBusiness = linesOfBusiness});    
   }
 
-  getRecentQuotes(): void{
-    this.recentQuoteService.getRecentQuotes()
-    .subscribe(recentQuotes => this.recentQuotes = recentQuotes);
-  }
+
+  
+
 
   add(name: string, description: string): void {
     name = name.trim();

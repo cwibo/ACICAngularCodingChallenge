@@ -15,6 +15,7 @@ import { LineOfBusinessComponent } from './linesOfBusiness/linesOfBusiness.compo
 import { LineOfBusinessSearchComponent } from './lineOfBusiness-search/lineOfBusiness-search.component';
 import { MessagesComponent } from './messages/messages.component';
 import { RecentQuotesComponent } from './recentQuotes/recentQuotes.component';
+import { RecentQuotesNumOfQuotesComponent } from './recentQuotesNumOfQuotes/recentQuotesNumOfQuotes.component';
 
 @NgModule({
   imports: [
@@ -37,7 +38,8 @@ import { RecentQuotesComponent } from './recentQuotes/recentQuotes.component';
     LineOfBusinessComponent,
     LineOfBusinessSearchComponent,
     MessagesComponent,
-    RecentQuotesComponent
+    RecentQuotesComponent,
+    RecentQuotesNumOfQuotesComponent
   ],
   bootstrap: [ AppComponent ]
 })

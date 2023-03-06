@@ -25,13 +25,3 @@
     
   </li>
 </ul>
-<ul class="linesOfBusiness">
-  <li *ngFor="let recentQuote of recentQuotes">
-    <a routerLink="/detail/{{recentQuote.id}}">
-      
-      <span class="badge">{{recentQuote.id}}</span> {{recentQuote.quoteNumber}} - {{recentQuote.lineOfBusiness}}
-    </a>
-   
-    
-  </li>
-</ul>

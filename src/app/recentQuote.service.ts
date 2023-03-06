@@ -5,11 +5,12 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { RecentQuote } from './RecentQuote';
-import { LineOfBusiness } from './LineOfBusiness';
 import { MessageService } from './message.service';
 
 @Injectable({ providedIn: 'root' })
 export class RecentQuoteService{
+  recentQuotes: RecentQuote[] = [];
+  topQuotes: RecentQuote[] = [];
     private recentQuoteUrl = 'api/recentQuotes';
 
   httpOptions = {
@@ -25,12 +26,23 @@ export class RecentQuoteService{
     getRecentQuotes(): Observable<RecentQuote[]> {
         return this.http.get<RecentQuote[]>(this.recentQuoteUrl)
           .pipe(
-            tap(_ => this.log('fetched lines of business')),
+            tap(_ => this.log('fetched recent Quotes')),
             catchError(this.handleError<RecentQuote[]>('getRecentQuotes', []))
           );
-      }
+      }  
+      //lineOfBusiness
+      //id: 11, name: 'General Liability', description: 'Liability coverage for businesses.' 
 
-
+      //recentQuote
+      //id: 101, quoteNumber: 'AC123PC', lineOfBusiness: 11
+    
+    getRecentQuote(id: number): Observable<RecentQuote> {
+        const url = `${this.recentQuoteUrl}/${id}`;
+        return this.http.get<RecentQuote>(url).pipe(
+          tap(_ => this.log(`fetched recentQuote lineOfBusiness=${id}`)),
+          catchError(this.handleError<RecentQuote>(`getRecentQuote lineOfBusiness=${id}`))
+        );
+    }
 
 
       /**
@@ -51,6 +63,6 @@ export class RecentQuoteService{
   }
 
   private log(message: string) {
-    this.messageService.add(`LineOfBusinessService: ${message}`);
+    this.messageService.add(`RecentQuoteService: ${message}`);
   }
 }

@@ -1,1 +1,10 @@
-<p>recent-quotes works!</p>
+<h2> Most Popular Quotes</h2>
+
+<ul class="recentQuotes">
+  <li *ngFor=" let id of id">
+   
+  </li>
+  <li *ngFor="let num of num; let i=index">   
+    <span>Line Of Business Id: </span> {{id[i]}} <span>Number of Quotes: </span>  {{num}}  
+  </li>
+</ul>
